@@ -47,9 +47,8 @@ export const metadata :Metadata  = {
     creator: "@twitty",
   },
   icons: {
-      icon: "/twitty.png",          // أيقونة أساسية
-    shortcut: "/twitty.png",      // للمتصفحات
-    apple: "/twitty.png",   
+      icon: "/twitter.svg",         
+    apple: "/twitter.svg",   
   },
 };
 

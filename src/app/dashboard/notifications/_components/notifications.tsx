@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { motion } from "framer-motion"
 
 type Tweet = {
-  id: string | number;
+  id: number;
   profileImage: string;
   message: string;
   statue: string;
@@ -16,24 +16,26 @@ export default function NotificationsPage() {
   const [displayed, setDisplayed] = useState<Tweet[]>([])
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
-  const [hasMore, setHasMore] = useState(true) 
+  const [hasMore, setHasMore] = useState(true)
   const loaderRef = useRef<HTMLDivElement | null>(null)
 
   // Fake fetch function with delay
-  const fetchTweets = (pageNum: number) => {
+  const fetchTweets = async (pageNum: number) => {
     setLoading(true)
-    setTimeout(() => {
+    try {
+      await new Promise((res) => setTimeout(res, 1000)) // simulate API
       const start = (pageNum - 1) * 5
       const end = start + 5
       const newTweets = allTweets.slice(start, end)
 
       setDisplayed(prev => [...prev, ...newTweets])
-      setLoading(false)
 
       if (newTweets.length === 0 || end >= allTweets.length) {
         setHasMore(false)
       }
-    }, 1000)
+    } finally {
+      setLoading(false)
+    }
   }
 
   // Initial fetch
@@ -43,8 +45,9 @@ export default function NotificationsPage() {
 
   // Infinite scroll observer
   useEffect(() => {
-    if (!hasMore) return // 
+    if (!hasMore) return
 
+    const target = loaderRef.current
     const observer = new IntersectionObserver(
       entries => {
         if (entries[0].isIntersecting && !loading) {
@@ -54,33 +57,35 @@ export default function NotificationsPage() {
       { threshold: 1 }
     )
 
-    if (loaderRef.current) observer.observe(loaderRef.current)
+    if (target) observer.observe(target)
     return () => {
-      if (loaderRef.current) observer.unobserve(loaderRef.current)
+      if (target) observer.unobserve(target)
     }
   }, [loading, hasMore])
 
   // Fetch when page changes
   useEffect(() => {
-    if (page > 1) {
-      fetchTweets(page)
-    }
+    if (page > 1) fetchTweets(page)
   }, [page])
 
   return (
     <motion.div
-       initial={{ x:'-300vh'  }}
-        animate={{ x:0 }}
-        transition={{ duration: 2 }}
-    className='mx-auto max-w-3xl px-4 py-8'>
+      initial={{ x: '-300vh' }}
+      animate={{ x: 0 }}
+      transition={{ duration: 1.5 }}
+      className='mx-auto max-w-3xl px-4 py-8'
+    >
       <h1 className='text-2xl font-semibold text-ring text-center mb-6'>
         Your Notifications
       </h1>
 
       <div className='space-y-4'>
-        {displayed.map((tweet) => (
-          <div
+        {displayed.map((tweet, i) => (
+          <motion.div
             key={tweet.id}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.05 }}
             className='flex items-center justify-between gap-4 p-4 rounded-xl border border-ring hover:bg-muted transition-colors'
           >
             <img
@@ -107,12 +112,14 @@ export default function NotificationsPage() {
                 {tweet.time}
               </span>
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
 
       {loading && hasMore && (
-        <p className='text-center text-muted-foreground mt-4'>Loading...</p>
+        <div className="flex justify-center mt-4">
+          <div className="w-5 h-5 border-2 border-ring border-t-transparent rounded-full animate-spin"></div>
+        </div>
       )}
       {!hasMore && (
         <p className='text-center text-muted-foreground mt-4'>No more tweets</p>

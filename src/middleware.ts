@@ -6,6 +6,7 @@ const privatepages = new Set([
   '/dashboard/communites',
   '/dashboard/about-us',
   '/dashboard/profile',
+  '/dashboard/terms',
 ]);
 
 export function middleware(req: NextRequest) {

@@ -6,6 +6,7 @@ import {Carousel,CarouselContent,CarouselItem
 } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";
+import Image from 'next/image';
 
 export default function StoryPage() {
 
@@ -34,15 +35,19 @@ export default function StoryPage() {
             className="basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 pl-2"
           >
             <div className="relative aspect-[9/16] w-full rounded-2xl overflow-hidden">
-              <img 
+              <Image
                 className="absolute inset-0 w-full h-full object-cover" 
                 src={story.bgImage} 
                 alt="Story Image" 
+                width={200}
+                height={400}
               />
-              <img 
+              <Image
                 className="absolute top-3 left-3 w-9 h-9 rounded-full border-2 border-white" 
                 src={story.image} 
                 alt="Profile Image" 
+                width={20}
+                height={20}
               />
             </div>
           </CarouselItem>
