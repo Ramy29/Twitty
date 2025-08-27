@@ -1,6 +1,6 @@
 'use client'
 
-import { Facebook, Github, Instagram, Linkedin, Mail, Phone } from 'lucide-react'
+import { Github, Instagram, Linkedin, Mail, Phone } from 'lucide-react'
 import Image from 'next/image'
 import React from 'react'
 import { motion } from "framer-motion"

@@ -46,7 +46,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-bold text-blue-500 dark:text-blue-300">1. Respect & Kindness</h2>
             <p className="text-gray-600 dark:text-gray-300 mt-2">
               By using Twitty, you agree to treat others with respect. Hate speech, harassment, and
-              abusive behavior are strictly forbidden. Let's keep our community creative & safe.
+              abusive behavior are strictly forbidden. Lets keep our community creative & safe.
             </p>
           </motion.div>
 

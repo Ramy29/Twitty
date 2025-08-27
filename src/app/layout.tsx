@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata = {
+export const metadata :Metadata  = {
   title: "Twitty | Connect, Share & Explore",
   description:
     "Twitty 🐦 — a creative social hub where you can share your thoughts, connect with others, and explore trending ideas. Join the conversation today!",

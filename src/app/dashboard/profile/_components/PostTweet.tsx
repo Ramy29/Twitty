@@ -29,8 +29,10 @@ export default function PostTweet() {
       </DialogDescription>
     </DialogHeader>
     <DialogFooter className="flex gap-5">
-      <Button onClick={()=>{ toast.error('Changes disacrd'), setOpen(false)}} variant='destructive'>Discard</Button>
-      <Button  onClick={()=>{ toast.success('Post has been published'),setOpen(false)}} variant='outline'>Post</Button>
+      <Button onClick={()=>{ toast.error('Changes disacrd');
+         setOpen(false)}} variant='destructive'>Discard</Button>
+      <Button  onClick={()=>{ toast.success('Post has been published');
+        setOpen(false)}} variant='outline'>Post</Button>
     </DialogFooter>
   </DialogContent>
 </Dialog>

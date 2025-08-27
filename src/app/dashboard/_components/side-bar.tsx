@@ -5,8 +5,7 @@ import {
   SheetContent,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Menu, Home, Bell, Mail, Search, UserPen, CircleEllipsis, Activity, PersonStanding, Briefcase, LogOut, Plus } from "lucide-react";
-import Link from "next/link";
+import { Menu, Bell, UserPen,  Activity, PersonStanding, LogOut, Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/themes/toggle";
 import { useRouter } from "next/navigation";

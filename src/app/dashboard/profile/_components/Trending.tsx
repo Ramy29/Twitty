@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { trendingData } from "@/lib/dummy-data/trending";
 import { motion } from "framer-motion"

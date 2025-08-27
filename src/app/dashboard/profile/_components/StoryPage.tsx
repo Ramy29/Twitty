@@ -2,7 +2,7 @@
 
 import { pages } from '@/lib/dummy-data/pages'
 import React from 'react'
-import {Carousel,CarouselContent,CarouselItem,CarouselNext, CarouselPrevious,
+import {Carousel,CarouselContent,CarouselItem
 } from "@/components/ui/carousel"
 import Autoplay from "embla-carousel-autoplay";
 import { useRef } from "react";

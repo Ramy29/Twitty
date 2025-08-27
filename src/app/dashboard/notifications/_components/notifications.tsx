@@ -4,11 +4,19 @@ import { tweets as allTweets } from '@/lib/dummy-data/tweets'
 import React, { useState, useEffect, useRef } from 'react'
 import { motion } from "framer-motion"
 
+type Tweet = {
+  id: string | number;
+  profileImage: string;
+  message: string;
+  statue: string;
+  time: string;
+};
+
 export default function NotificationsPage() {
-  const [displayed, setDisplayed] = useState<any[]>([])
+  const [displayed, setDisplayed] = useState<Tweet[]>([])
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
-  const [hasMore, setHasMore] = useState(true) // ✅ عشان نعرف لو فيه بيانات تانية
+  const [hasMore, setHasMore] = useState(true) 
   const loaderRef = useRef<HTMLDivElement | null>(null)
 
   // Fake fetch function with delay
